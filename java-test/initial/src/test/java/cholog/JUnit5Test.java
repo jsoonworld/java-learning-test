@@ -205,8 +205,16 @@ public class JUnit5Test {
                 }
 
                 @Override
-                public boolean equals(Object obj) {
-                    return obj.equals(value);
+                public boolean equals(Object o) {
+                    if (this == o) return true;
+                    if (o == null || getClass() != o.getClass()) return false;
+                    LocalObject that = (LocalObject) o;
+                    return value == that.value;
+                }
+
+                @Override
+                public int hashCode() {
+                    return Objects.hash(value);
                 }
             }
 
